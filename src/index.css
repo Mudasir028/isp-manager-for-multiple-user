@@ -1,0 +1,14 @@
+.modal-header {
+  background-color: #f5365c;
+  border-color: #f5365c;
+}
+.modal-header > h5 {
+  color: #fff;
+}
+.main-content .container-fluid {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+.m--7 {
+  margin: -10rem !important;
+}
