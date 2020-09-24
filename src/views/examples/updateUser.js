@@ -18,13 +18,13 @@ import {
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
 
-import userPic from "assets/img/theme/team-4-800x800.jpg";
+// import userPic from "assets/img/theme/team-4-800x800.jpg";
 
 import isp from "../../services/ispService";
 import Toast from "light-toast";
 import auth from "../../services/authService";
 
-const admin_id = auth.getCurrentUserId();
+const admin_id = auth.getTokenId();
 
 class UpdateUser extends form {
   state = {
@@ -112,7 +112,7 @@ class UpdateUser extends form {
   };
 
   render() {
-    const { allFranchises, allPackages } = this.state;
+    const { allFranchises } = this.state;
 
     return (
       <>

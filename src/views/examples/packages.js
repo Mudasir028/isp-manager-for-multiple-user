@@ -29,7 +29,7 @@ import Toast from "light-toast";
 import Pagination from "../../components/common/pagination";
 import { paginate } from "../../utils/paginate";
 import auth from "../../services/authService";
-const admin_id = auth.getCurrentUserId();
+const admin_id = auth.getTokenId();
 
 class Packages extends React.Component {
   state = {

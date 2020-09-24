@@ -1,3 +1,4 @@
+import Index from "views/Index.js";
 import Users from "views/examples/users";
 import Packages from "views/examples/packages";
 import Franchises from "views/examples/franchise";
@@ -10,6 +11,13 @@ import PaidBills from "views/examples/paidBills";
 import SubscribePackage from "views/examples/subscribePackage";
 
 var routes = [
+  {
+    path: "/index",
+    name: "Dashboard",
+    icon: "ni ni-tv-2 text-primary",
+    component: Index,
+    layout: "/isp",
+  },
   {
     path: "/users",
     name: "Users",

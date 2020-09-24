@@ -8,6 +8,7 @@ const apiEndpoint = {
 };
 
 const tokenKey = "token";
+const tokenKey2 = "tokenAN";
 const tokenKey1 = "tokenAI";
 
 http.setJwt(getJwt());
@@ -20,6 +21,7 @@ async function login(username, password) {
   const jwt = user.user[0].token;
   localStorage.setItem(tokenKey, jwt);
   localStorage.setItem(tokenKey1, user.user[0].id);
+  localStorage.setItem(tokenKey2, user.user[0].name);
   return user;
 }
 
@@ -41,7 +43,15 @@ async function logout(username) {
   localStorage.removeItem(tokenKey1);
 }
 
-export function getCurrentUser() {
+export function getCurrentAdmin() {
+  try {
+    const admin = localStorage.getItem(tokenKey2);
+    return admin;
+  } catch (ex) {
+    return null;
+  }
+}
+export function getToken() {
   try {
     const jwt = localStorage.getItem(tokenKey);
     return jwt;
@@ -50,7 +60,8 @@ export function getCurrentUser() {
     return null;
   }
 }
-export function getCurrentUserId() {
+
+export function getTokenId() {
   try {
     const admin_id = localStorage.getItem(tokenKey1);
     return admin_id;
@@ -67,7 +78,8 @@ export default {
   login,
   register,
   logout,
-  getCurrentUser,
-  getCurrentUserId,
+  getToken,
+  getTokenId,
+  getCurrentAdmin,
   getJwt,
 };

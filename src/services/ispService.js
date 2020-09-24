@@ -6,6 +6,26 @@ function setFormData(data) {
   return formData;
 }
 
+async function dashboarInfo(admin_id) {
+  const formData = new FormData();
+  formData.append("admin_id", admin_id);
+  const { data } = await http.post("/dashboard", formData);
+  return data;
+}
+
+async function getUserGraph(admin_id) {
+  const formData = new FormData();
+  formData.append("admin_id", admin_id);
+  const { data } = await http.post("user_graph", formData);
+  return data;
+}
+async function getBillDates(admin_id) {
+  const formData = new FormData();
+  formData.append("admin_id", admin_id);
+  const { data } = await http.post("bill_dates", formData);
+  return data;
+}
+
 async function createFranchise(admin_id, name, area, details) {
   const formData = new FormData();
   formData.append("admin_id", admin_id);
@@ -28,6 +48,7 @@ async function getFranchiseDetails(id) {
   const { data } = await http.get(`/franchise/${id}`);
   return data;
 }
+
 async function deleteFranchise({ ...params }) {
   const formData = setFormData(params);
   const { data } = await http.post("/delete_franchise", formData);
@@ -77,6 +98,11 @@ async function updateUser({ ...params }) {
 async function deleteUser({ ...params }) {
   const formData = setFormData(params);
   const { data } = await http.post("/delete_user", formData);
+  return data;
+}
+async function changeStatus({ ...params }) {
+  const formData = setFormData(params);
+  const { data } = await http.post("/change_status", formData);
   return data;
 }
 
@@ -142,9 +168,8 @@ async function updatePackagePic(admin_id, pic, id) {
   return data;
 }
 
-async function getSingleUserBills(user_id) {
-  const formData = new FormData();
-  formData.append("user_id", user_id);
+async function getSingleUserBills({ ...params }) {
+  const formData = setFormData(params);
   const { data } = await http.post("/user_bills", formData);
   return data;
 }
@@ -179,6 +204,9 @@ async function getPaidBills(admin_id) {
 }
 
 export default {
+  dashboarInfo,
+  getUserGraph,
+  getBillDates,
   createFranchise,
   getAllFranchises,
   getFranchiseDetails,
@@ -189,6 +217,7 @@ export default {
   getUserDetails,
   updateUser,
   deleteUser,
+  changeStatus,
   updateFrontNic,
   updateBackNic,
   createSubscription,

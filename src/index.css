@@ -12,3 +12,60 @@
 .m--7 {
   margin: -10rem !important;
 }
+/* =================.table-fixed=========================== */
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+  display: block;
+}
+
+.table-fixed tbody td,
+.table-fixed tbody th,
+.table-fixed thead > tr > th {
+  float: left;
+  position: relative;
+}
+.table ::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+/* width */
+.table ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+.table ::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+.col-xl-3 ::-webkit-scrollbar-thumb {
+  background: rgba(185, 184, 184, 0.651);
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+.col-xl-3 ::-webkit-scrollbar-thumb:hover {
+  background: rgba(114, 114, 114, 0.795);
+  border-radius: 50px;
+}
+
+/* ===================.table-fixed======================= */
+
+/* @media (min-width: 768px) {
+  .navbar-vertical.navbar-expand-md {
+    max-width: 225px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+} */
+/* @media (min-width: 768px) {
+  .navbar-vertical.navbar-expand-md.fixed-left + .main-content {
+    margin-left: 225px;
+  }
+} */

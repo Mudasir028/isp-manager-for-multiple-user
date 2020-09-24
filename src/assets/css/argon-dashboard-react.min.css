@@ -12672,10 +12672,10 @@ a.btn-icon-only {
 }
 @media (min-width: 768px) {
   .navbar-vertical.navbar-expand-md.fixed-left + .main-content {
-    margin-left: 250px;
+    margin-left: 225px;
   }
   .navbar-vertical.navbar-expand-md.fixed-right + .main-content {
-    margin-right: 250px;
+    margin-right: 225px;
   }
 }
 @media (min-width: 992px) {
@@ -13961,7 +13961,7 @@ textarea[resize="horizontal"] {
     top: 0;
     bottom: 0;
     width: 100%;
-    max-width: 250px;
+    max-width: 225px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     overflow-y: auto;

@@ -14,7 +14,6 @@ import UpdatePackage from "views/examples/updatePackage";
 import ViewFranchise from "views/examples/viewFranchise";
 import UpdateFranchise from "views/examples/updateFranchise";
 import ViewPackage from "views/examples/viewPackage";
-import SingleUserBills from "views/examples/singleUserBills";
 import Logout from "views/examples/logout";
 import UpdateSubscribedPackage from "views/examples/updateSubscribedPackage";
 
@@ -80,10 +79,6 @@ class Admin extends React.Component {
               component={UpdateSubscribedPackage}
             />
             <Route
-              path="/isp/single-user-bills/:user_id"
-              component={SingleUserBills}
-            />
-            <Route
               path="/isp/view-package/:package_id"
               component={ViewPackage}
             />
@@ -100,7 +95,7 @@ class Admin extends React.Component {
               component={UpdateFranchise}
             />
             {/* <Redirect from="*" to="/admin/index" /> */}
-            <Redirect from="*" to="/isp/users" />
+            <Redirect from="*" to="/isp/index" />
           </Switch>
           <Container fluid>
             <AdminFooter />

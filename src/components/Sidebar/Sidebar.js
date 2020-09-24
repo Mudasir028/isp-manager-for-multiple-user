@@ -10,11 +10,11 @@ import {
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
+  // Form,
+  // Input,
+  // InputGroupAddon,
+  // InputGroupText,
+  // InputGroup,
   Media,
   NavbarBrand,
   Navbar,
@@ -25,8 +25,6 @@ import {
   Row,
   Col,
 } from "reactstrap";
-
-var ps;
 
 class Sidebar extends React.Component {
   state = {
@@ -71,7 +69,7 @@ class Sidebar extends React.Component {
     });
   };
   render() {
-    const { bgColor, routes, logo } = this.props;
+    const { routes, logo } = this.props;
     let navbarBrandProps;
     if (logo && logo.innerLink) {
       navbarBrandProps = {

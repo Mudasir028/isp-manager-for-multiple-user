@@ -20,7 +20,7 @@ import Joi from "joi-browser";
 import Toast from "light-toast";
 import auth from "../../services/authService";
 
-const admin_id = auth.getCurrentUserId();
+const admin_id = auth.getTokenId();
 
 class SubscribePackage extends form {
   state = {

@@ -17,13 +17,13 @@ import {
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
 
-import userPic from "assets/img/theme/team-4-800x800.jpg";
+// import userPic from "assets/img/theme/team-4-800x800.jpg";
 
 import isp from "../../services/ispService";
 import Toast from "light-toast";
 import auth from "../../services/authService";
 
-const admin_id = auth.getCurrentUserId();
+const admin_id = auth.getTokenId();
 
 class CreateUser extends form {
   state = {
@@ -34,7 +34,10 @@ class CreateUser extends form {
       address: "",
       franchise: "",
       gender: "",
+      nicFront: "",
+      nicBack: "",
     },
+
     errors: {},
     allUsers: [],
     allFranchises: [],
@@ -43,10 +46,22 @@ class CreateUser extends form {
   schema = {
     name: Joi.string().required().label("Name"),
     cnic: Joi.string().required().label("CNIC"),
-    number: Joi.number().required().label("Number"),
+    number: Joi.string()
+      .trim()
+      .regex(/^[0-9]{7,11}$/)
+      .required()
+      .label("Number"),
     address: Joi.string().required().label("Address"),
     franchise: Joi.string().required().label("Franchise"),
     gender: Joi.string().required().label("Gender"),
+    nicFront: Joi.any()
+      .meta({ swaggerType: "file" })
+      .required()
+      .description("NiC Front Side"),
+    nicBack: Joi.any()
+      .meta({ swaggerType: "file" })
+      .required()
+      .description("NiC Back Side"),
   };
 
   async componentDidMount() {
@@ -82,7 +97,6 @@ class CreateUser extends form {
     data.cnic = "";
     data.number = "";
     data.address = "";
-    data.franchise = "";
 
     this.setState({ data });
   };
@@ -97,9 +111,9 @@ class CreateUser extends form {
         franchise: franchise_id,
         gender,
       } = this.state.data;
-      const allUsers = this.state.allUsers;
+      // const allUsers = this.state.allUsers;
 
-      const errors = { ...this.state.errors };
+      // const errors = { ...this.state.errors };
 
       // if (!allUsers.length === undefined) {
       //   console.log("ok");
@@ -126,6 +140,10 @@ class CreateUser extends form {
       //   }
       // }
       Toast.loading("Loading...");
+      const nicFront = document.querySelector("#nicFront");
+      var nic_front = nicFront.files[0];
+      const nicBack = document.querySelector("#nicBack");
+      var nic_back = nicBack.files[0];
       const res = await isp.createUser({
         admin_id,
         name,
@@ -134,6 +152,8 @@ class CreateUser extends form {
         address,
         franchise_id,
         gender,
+        nic_front,
+        nic_back,
       });
       Toast.hide();
       this.handleFormReset();
@@ -293,6 +313,28 @@ class CreateUser extends form {
                             "+923032394255"
                           )}
                         </Col>
+                      </Row>
+                    </div>
+                    <hr className="my-4" />
+
+                    <h6 className="heading-small text-muted mb-4">Ducoments</h6>
+                    <div className="pl-lg-4">
+                      <Row>
+                        <Col md="6">
+                          {this.renderImageInput(
+                            "nicFront",
+                            "NIC Front Side",
+                            "file",
+                            "Pick an Image!"
+                          )}
+                        </Col>
+
+                        {this.renderImageInput(
+                          "nicBack",
+                          "NIC Back Side",
+                          "file",
+                          "Pick an Image!"
+                        )}
                       </Row>
                     </div>
                     <Row>

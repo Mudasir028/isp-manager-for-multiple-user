@@ -2,7 +2,7 @@ import React from "react";
 import form from "../../components/common/form";
 import { Link } from "react-router-dom";
 // reactstrap components
-import { Button, Card, CardHeader, CardBody, Form, Row, Col } from "reactstrap";
+import { Button, Card, CardBody, Form, Row, Col } from "reactstrap";
 
 import Joi from "joi-browser";
 import Toast from "light-toast";

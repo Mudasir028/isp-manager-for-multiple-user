@@ -20,7 +20,7 @@ class TableBody extends Component {
       <>
         <tbody>
           {data.map((item) => (
-            <tr key={item.id}>
+            <tr key={Math.random()}>
               {columns.map((column) => (
                 <td key={this.createKey(item, column)}>
                   {this.renderCell(item, column)}

@@ -18,7 +18,7 @@ import {
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
 
-import userPic from "assets/img/theme/team-4-800x800.jpg";
+// import userPic from "assets/img/theme/team-4-800x800.jpg";
 
 import isp from "../../services/ispService";
 import Toast from "light-toast";
@@ -40,7 +40,6 @@ class UpdateSubscribedPackage extends form {
 
   async componentDidMount() {
     try {
-      const id = this.props.match.params.user_id;
       const allPackages = await isp.getAllPackages();
 
       const { data } = this.state;
@@ -85,7 +84,7 @@ class UpdateSubscribedPackage extends form {
   };
 
   render() {
-    const { allFranchises, allPackages } = this.state;
+    const { allPackages } = this.state;
 
     return (
       <>

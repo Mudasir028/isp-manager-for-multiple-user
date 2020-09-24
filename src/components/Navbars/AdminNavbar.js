@@ -12,8 +12,12 @@ import {
   Media,
 } from "reactstrap";
 
+import auth from "../../services/authService";
+const admin = auth.getCurrentAdmin();
+
 class AdminNavbar extends React.Component {
   render() {
+    // console.log(admin);
     return (
       <>
         <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -48,7 +52,7 @@ class AdminNavbar extends React.Component {
                     </span>
                     <Media className="ml-2 d-none d-lg-block">
                       <span className="mb-0 text-sm font-weight-bold">
-                        Admin
+                        {admin}
                       </span>
                     </Media>
                   </Media>

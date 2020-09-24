@@ -18,10 +18,12 @@ import {
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
 import userPic from "assets/img/theme/nic.png";
-
+import TableComponent from "components/common/table";
 import Toast from "light-toast";
 import isp from "../../services/ispService";
 import Joi from "joi-browser";
+import auth from "../../services/authService";
+const admin_id = auth.getTokenId();
 
 class ViewUser extends form {
   state = {
@@ -35,6 +37,7 @@ class ViewUser extends form {
     isShowFrontButtonNic: false,
     isShowBackButtonNic: false,
     userDetails: {},
+    singleUserBills: [],
   };
 
   nicFrontRef = React.createRef();
@@ -49,14 +52,31 @@ class ViewUser extends form {
     nicBack: Joi.any()
       .meta({ swaggerType: "file" })
       .required()
-      .description("NiC Front Side"),
+      .description("NiC Back Side"),
   };
+
+  columns = [
+    { path: "user_id", label: "User Id" },
+    {
+      path: "package_id",
+      label: "Package Id",
+    },
+    {
+      path: "pay_date",
+      label: "Pay Date",
+    },
+    { path: "amount_paid", label: "Amount Paid" },
+    { path: "created_at", label: "Created At" },
+    { path: "updated_at", label: "Updated At" },
+  ];
 
   async componentDidMount() {
     try {
       Toast.loading("Loading...");
       const id = this.props.match.params.user_id;
       const user = await isp.getUserDetails(id);
+
+      const res = await isp.getSingleUserBills({ admin_id, id });
 
       const userDetails = user.user[0];
 
@@ -68,6 +88,7 @@ class ViewUser extends form {
       this.setState({
         data,
         userDetails,
+        singleUserBills: res.bills,
       });
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
@@ -147,6 +168,7 @@ class ViewUser extends form {
       cell_num,
     } = this.state.userDetails;
     const { nicFront, nicBack } = this.state.data;
+    const { singleUserBills } = this.state;
     const {
       isChangeNicFront,
       isChangeNicBack,
@@ -169,7 +191,7 @@ class ViewUser extends form {
 
                     <Col className="text-right" xs="4">
                       <Link
-                        className="primary h5 mb-0 text-uppercase d-md"
+                        className="btn btn-info btn-sm"
                         to={`/isp/update-user/${this.props.match.params.user_id}  `}
                       >
                         Edit
@@ -363,6 +385,23 @@ class ViewUser extends form {
                           </Form>
                         )}
                       </Col>
+                    </Row>
+                  </div>
+                  <hr className="my-4" />
+                  <h6 className="heading-small text-muted mb-4">Users Bills</h6>
+                  <div className="">
+                    <Row>
+                      <div className="col">
+                        <Card className="shadow">
+                          {/* <CardHeader className="border-0"></CardHeader> */}
+                          <TableComponent
+                            columns={this.columns}
+                            data={singleUserBills}
+                            classes="table align-items-center table-flush"
+                            sortColumn=""
+                          />
+                        </Card>
+                      </div>
                     </Row>
                   </div>
                 </CardBody>

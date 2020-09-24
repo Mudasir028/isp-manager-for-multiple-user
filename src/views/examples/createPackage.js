@@ -21,7 +21,7 @@ import isp from "../../services/ispService";
 import Toast from "light-toast";
 import auth from "../../services/authService";
 
-const admin_id = auth.getCurrentUserId();
+const admin_id = auth.getTokenId();
 
 class CreatePackage extends form {
   state = {

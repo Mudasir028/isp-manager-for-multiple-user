@@ -87,7 +87,7 @@ class Form extends Component {
         <Input
           name={name}
           id={name}
-          value={data[name]}
+          value={data[name] || ""}
           type={type}
           placeholder={placeholder}
           className="form-control-alternative"
@@ -137,7 +137,7 @@ class Form extends Component {
     placeholder,
     handleImagePreview
   ) {
-    const { data, errors } = this.state;
+    const { errors } = this.state;
 
     return (
       <FormGroup>

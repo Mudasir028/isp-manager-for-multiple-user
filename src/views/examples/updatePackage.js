@@ -22,7 +22,7 @@ import Toast from "light-toast";
 import isp from "../../services/ispService";
 import auth from "../../services/authService";
 
-const admin_id = auth.getCurrentUserId();
+const admin_id = auth.getTokenId();
 
 class UpdatePackage extends form {
   state = {

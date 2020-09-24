@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 // reactstrap components
@@ -27,7 +27,7 @@ import Pagination from "../../components/common/pagination";
 import { paginate } from "../../utils/paginate";
 import auth from "../../services/authService";
 
-const admin_id = auth.getCurrentUserId();
+const admin_id = auth.getTokenId();
 
 class Franchise extends React.Component {
   state = {

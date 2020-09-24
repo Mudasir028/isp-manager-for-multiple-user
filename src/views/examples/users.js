@@ -25,10 +25,10 @@ import Header from "components/Headers/Header.js";
 import isp from "../../services/ispService";
 import userPic from "assets/img/theme/team-4-800x800.jpg";
 import Toast from "light-toast";
-import auth from "../../services/authService";
 import Pagination from "../../components/common/pagination";
 import { paginate } from "../../utils/paginate";
-const admin_id = auth.getCurrentUserId();
+import auth from "../../services/authService";
+const admin_id = auth.getTokenId();
 
 class Tables extends React.Component {
   state = {
@@ -57,11 +57,6 @@ class Tables extends React.Component {
     { path: "franchise_id", label: "Franchise" },
     { path: "gender", label: "Gender" },
     { path: "created_at", label: "Created At" },
-    {
-      path: "status",
-      label: "Status",
-      content: (u) => (u.status === "1" ? "Active" : "Unactive"),
-    },
     { path: "package_id", label: "Package" },
     { path: "updated_at", label: "Updated At" },
     {
@@ -69,7 +64,7 @@ class Tables extends React.Component {
       label: "NIC Front",
       content: (u) => (
         <div className="avatar-group">
-          <a className="avatar avatar-sm" id="tooltip742438047">
+          <a href="kad" className="avatar avatar-sm" id="tooltip742438047">
             <img
               alt="..."
               className="rounded-square"
@@ -95,16 +90,30 @@ class Tables extends React.Component {
       ),
     },
     {
-      path: "Bills",
-      label: "Bills",
-      content: (u) => (
-        <Link
-          className="btn btn-info btn-sm"
-          to={`/isp/single-user-bills/${u.id}  `}
-        >
-          User Bills
-        </Link>
-      ),
+      path: "status",
+      label: "Status",
+      content: (u) =>
+        u.status === "1" ? (
+          <Button
+            onClick={() => this.changeStatus(u.id)}
+            color="success"
+            type="button"
+            className="btn-sm"
+            outline
+          >
+            Enable
+          </Button>
+        ) : (
+          <Button
+            onClick={() => this.changeStatus(u.id)}
+            color="default"
+            type="button"
+            className="btn-sm"
+            outline
+          >
+            Disable
+          </Button>
+        ),
     },
     {
       path: "View",
@@ -131,7 +140,7 @@ class Tables extends React.Component {
     },
   ];
 
-  async componentDidMount() {
+  componentDidMount() {
     this.getUsers();
   }
 
@@ -150,6 +159,25 @@ class Tables extends React.Component {
       }
     }
     Toast.hide();
+  };
+
+  changeStatus = async (id) => {
+    // if (this.state.confirmationModal === false) {
+    //   this.setState({ id: id, confirmationModal: true });
+    //   return;
+    // } else {
+    try {
+      Toast.loading("Loading...");
+      const res = await isp.changeStatus({ admin_id, id });
+      this.getUsers();
+      Toast.hide();
+      Toast.success(res.msg[0].message, 3000);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        console.log(ex.response.data);
+      }
+    }
+    // }
   };
 
   deleteSelectedUser = async (id) => {
@@ -295,7 +323,7 @@ class Tables extends React.Component {
                         name="filterValue"
                         value={filterValue}
                         id="exampleSelect"
-                        className="form-control-alternative mb-2"
+                        className="form-control-alternative mb-2 btn-sm"
                         onChange={this.handlefiltterInput}
                       >
                         <option value="1">User Name</option>

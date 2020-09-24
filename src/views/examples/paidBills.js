@@ -1,17 +1,7 @@
 import React from "react";
 
 // reactstrap components
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  Table,
-  Container,
-  Row,
-} from "reactstrap";
+import { Card, CardHeader, CardFooter, Container, Row } from "reactstrap";
 // core components
 import TableComponent from "components/common/table";
 import Header from "components/Headers/Header.js";
@@ -19,7 +9,7 @@ import isp from "../../services/ispService";
 import Toast from "light-toast";
 import auth from "../../services/authService";
 
-const admin_id = auth.getCurrentUserId();
+const admin_id = auth.getTokenId();
 
 class PaidBills extends React.Component {
   state = { paidBills: [] };
@@ -76,56 +66,7 @@ class PaidBills extends React.Component {
                 />
 
                 <CardFooter className="py-4">
-                  <nav aria-label="...">
-                    <Pagination
-                      className="pagination justify-content-end mb-0"
-                      listClassName="justify-content-end mb-0"
-                    >
-                      <PaginationItem className="disabled">
-                        <PaginationLink
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                          tabIndex="-1"
-                        >
-                          <i className="fas fa-angle-left" />
-                          <span className="sr-only">Previous</span>
-                        </PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem className="active">
-                        <PaginationLink
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          1
-                        </PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          2 <span className="sr-only">(current)</span>
-                        </PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          3
-                        </PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fas fa-angle-right" />
-                          <span className="sr-only">Next</span>
-                        </PaginationLink>
-                      </PaginationItem>
-                    </Pagination>
-                  </nav>
+                  <nav aria-label="..."></nav>
                 </CardFooter>
               </Card>
             </div>

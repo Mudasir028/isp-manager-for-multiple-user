@@ -21,7 +21,7 @@ import auth from "../../services/authService";
 import Pagination from "../../components/common/pagination";
 import { paginate } from "../../utils/paginate";
 
-const admin_id = auth.getCurrentUserId();
+const admin_id = auth.getTokenId();
 
 class UserBills extends React.Component {
   state = {
