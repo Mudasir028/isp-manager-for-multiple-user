@@ -106,7 +106,6 @@ class ViewPackage extends form {
                     <Col className="text-right" xs="4">
                       <Link
                         className="primary h5 mb-0 text-uppercase d-md"
-                        // to={`/admin/update-user/${u.id}  `}
                         to={`/isp/update-package/${this.props.match.params.package_id}  `}
                       >
                         Edit

@@ -297,6 +297,7 @@ class Tables extends React.Component {
       confirmationModal,
       id,
     } = this.state;
+
     const { totalCount, data } = this.filterUsers();
 
     return (

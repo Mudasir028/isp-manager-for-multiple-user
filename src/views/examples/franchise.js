@@ -64,6 +64,7 @@ class Franchise extends React.Component {
           color="danger"
           type="button"
           className="btn-sm"
+          outline
         >
           Delete
         </Button>

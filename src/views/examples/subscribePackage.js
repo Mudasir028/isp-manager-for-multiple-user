@@ -114,7 +114,7 @@ class SubscribePackage extends form {
                         <Col lg="6">
                           {this.renderSelect("user", "Users", allUsers)}
                         </Col>
-
+                        {/* 
                         <Col lg="6">
                           {this.renderInput(
                             "date",
@@ -122,7 +122,7 @@ class SubscribePackage extends form {
                             "date",
                             "date placeholder"
                           )}
-                        </Col>
+                        </Col> */}
 
                         <Col lg="6">
                           {this.renderSelect(
